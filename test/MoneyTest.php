@@ -10,4 +10,9 @@ class MoneyTest extends PHPUnit\Framework\TestCase {
         $product = $five->times(3);
         $this->assertEquals(15, $product->amount);
     }
+
+    public function testEquality() {
+        $this->assertTrue((new money\Dollar(5))->equals(new money\Dollar(5)));
+        $this->assertFalse((new money\Dollar(5))->equals(new money\Dollar(6)));
+    }
 }
