@@ -2,7 +2,7 @@
 namespace money;
 
 class Dollar {
-    public $amount;
+    private $amount;
 
     function __construct($amount) {
         $this->amount = $amount;
