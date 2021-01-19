@@ -9,6 +9,6 @@ class Money {
     }
 
     function equals($object) {
-        return $this->amount == $object->amount;
+        return $this->amount == $object->amount && get_class($object) == get_class($this);
     }
 }
