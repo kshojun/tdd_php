@@ -1,18 +1,8 @@
 <?php
 namespace money;
 
-class Dollar {
-    private $amount;
-
-    function __construct($amount) {
-        $this->amount = $amount;
-    }
-
+class Dollar extends Money {
     function times($multiplier) {
         return new Dollar($this->amount * $multiplier);
-    }
-
-    function equals($object) {
-        return $this->amount == $object->amount;
     }
 }
