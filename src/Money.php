@@ -1,7 +1,7 @@
 <?php
 namespace money;
 
-abstract class Money {
+class Money {
     protected $amount;
     protected $currency;
 
@@ -10,21 +10,27 @@ abstract class Money {
         $this->currency = $currency;
     }
 
-    abstract function times($multiplier);
+    public function times($multiplier) {
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
 
-    function currency() {
+    public function currency() {
         return $this->currency;
     }
 
-    function equals($object) {
-        return $this->amount == $object->amount && get_class($object) == get_class($this);
+    public function equals($object) {
+        return $this->amount == $object->amount && $this->currency() == $object->currency();
+    }
+    
+    public function toString() {
+        return $this->amount . ' ' . $this->currency;
     }
 
     public static function dollar($amount) {
-        return new Dollar($amount, "USD");
+        return new Money($amount, "USD");
     }
 
     public static function franc($amount) {
-        return new Franc($amount, "CHF");
+        return new Money($amount, "CHF");
     }
 }
