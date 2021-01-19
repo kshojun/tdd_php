@@ -18,4 +18,12 @@ class MoneyTest extends PHPUnit\Framework\TestCase {
         $this->assertEquals("USD", money\Money::dollar(1)->currency());
         $this->assertEquals("CHF", money\Money::franc(1)->currency());
     }
+
+    public function testSimpleAddition() {
+        $five = money\Money::dollar(5);
+        $sum = $five->plus($five);
+        $bank = new money\Bank();
+        $reduced = $bank->reduce($sum, "USD");
+        $this->assertEquals(money\Money::dollar(10), $reduced);
+    }
 }
