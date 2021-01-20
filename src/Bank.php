@@ -2,7 +2,7 @@
 namespace money;
 
 class Bank {
-    function reduce($source, $to) {
-        return Money::dollar(10);
+    function reduce(object $source, string $to) : Money {
+        return $source->reduce($to);
     }
 }
