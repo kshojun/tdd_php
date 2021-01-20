@@ -46,4 +46,15 @@ class MoneyTest extends PHPUnit\Framework\TestCase {
         $result = $bank->reduce(money\Money::dollar(1), "USD");
         $this->assertEquals(money\Money::dollar(1), $result);
     }
+
+    public function testReduceMoneyDifferentCurrency() {
+        $bank = new money\Bank();
+        $bank->addRate("CHF", "USD", 2);
+        $result = $bank->reduce(money\Money::franc(2), "USD");
+        $this->assertEquals(money\Money::dollar(1), $result);
+    }
+
+    public function testIdentityRate() {
+        $this->assertEquals(1, (new money\Bank())->rate("USD", "USD"));
+    }
 }
